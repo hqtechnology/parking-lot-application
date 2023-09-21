@@ -5,14 +5,11 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "parking_slot")
-public class ParkingSlot {
+@Table(name = "vehicle")
+public class Vehicle {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private String id;
-    private String floorId;
-    private int slotNumber;
-    private String vehicleId;
-    private boolean isOccupied;
+    private String type;
 
 }

@@ -1,0 +1,19 @@
+
+server:
+  port: 8080
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    password: postgres
+    url: jdbc:postgresql://localhost:5432/parking_lot_db
+    database: parking_lot_db
+    username: postgres
+    generateDDL: true
+  jpa:
+    hibernate:
+      ddl-auto: create
+
+  mvc:
+    pathmatch:
+      matching-strategy: 'ant_path_matcher'

@@ -4,8 +4,10 @@ import com.h12.parking_lot.service.ParkingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
-@Controller
+@Controller("/parking")
+@SuppressWarnings({"rawtypes"})
 public class ParkingController {
 
     private final ParkingService parkingService;
@@ -15,8 +17,9 @@ public class ParkingController {
         this.parkingService = parkingService;
     }
 
+    @GetMapping("/freeSlots")
     public ResponseEntity getFreeSlots(int buildingNumber) {
-        return ResponseEntity.ok().body(parkingService.getFreeSlots(buildingNumber));
+        return ResponseEntity.ok().build();
     }
 
 }
