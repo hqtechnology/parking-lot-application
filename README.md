@@ -32,3 +32,5 @@ Unparks a vehicle given the ticket id.
     <parking_lot_id>_<floor_no>_<slot_no>
     Example: PR1234_2_5 (denotes 5th slot of 2nd floor of parking lot PR1234)
 #### We can assume that there will only be 1 parking lot. The ID of that parking lot is PR1234.
+
+###### Open swagger at [swagger](http://localhost:8080/actuator/swagger-ui/index.html#/)

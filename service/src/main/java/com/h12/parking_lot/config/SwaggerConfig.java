@@ -10,7 +10,14 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class AppConfig {
+//@EnableSwagger2
+public class SwaggerConfig {
 
-
+    @Bean
+    public SwaggerWelcomeCommon getSwaggerBean(WebEndpointProperties webEndpointProperties) {
+        SwaggerUiConfigProperties swaggerUiConfigProperties = new SwaggerUiConfigProperties();
+        return new SwaggerWelcomeActuator(swaggerUiConfigProperties,
+                new SpringDocConfigProperties(),
+                new SwaggerUiConfigParameters(swaggerUiConfigProperties), webEndpointProperties);
+    }
 }

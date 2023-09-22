@@ -1,8 +1,32 @@
 
 server:
+  scheme: http
   port: 8080
 
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: info, health, configprops, env, prometheus, metrics
+#  security:
+#    enabled: false
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: openapi, swagger-ui
+
+springdoc:
+  use-management-port: true
+  show-actuator: true
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
 spring:
+  config:
+    use-legacy-processing: false
   datasource:
     driver-class-name: org.postgresql.Driver
     password: postgres
@@ -16,4 +40,5 @@ spring:
 
   mvc:
     pathmatch:
-      matching-strategy: 'ant_path_matcher'
+      matching-strategy: ant_path_matcher
+
