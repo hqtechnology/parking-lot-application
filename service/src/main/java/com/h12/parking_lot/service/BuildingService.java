@@ -13,7 +13,7 @@ public class BuildingService {
     private BuildingRepository buildingRepository;
 
     public Building getById(String id) {
-        return buildingRepository.getReferenceById(id);
+        return buildingRepository.findById(id).get();
     }
 
     public List<Building> getAll() {
@@ -29,7 +29,7 @@ public class BuildingService {
     }
 
     public int update(Building building) {
-        if(building.getAddress() == null) {
+        if (building.getAddress() == null) {
             return buildingRepository.updateName(building.getName(), building.getId());
         }
 //        buildingRepository.save(building);

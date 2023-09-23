@@ -16,20 +16,19 @@ public class FloorService {
         this.floorRepository = floorRepository;
     }
 
-    public Floor getById(String id) {
-        return floorRepository.getReferenceById(id);
+    public Floor getById(Integer id) {
+        return floorRepository.findById(id).get();
     }
 
     public void save(Floor floor) {
         floorRepository.save(floor);
     }
 
-    public void updateName(Floor floor) {
-        floorRepository.save(floor);
-    }
-
     public int update(Floor floor) {
-        floorRepository.save(floor);
+        Floor floor1 = floorRepository.findById(floor.getId()).get();
+        floor1.floorCapacity = floor.floorCapacity;
+        floor1.floorNumber = floor.floorNumber;
+        floorRepository.save(floor1);
         return 1;
     }
 
@@ -41,7 +40,7 @@ public class FloorService {
         floorRepository.delete(floor);
     }
 
-    public void deleteById(String id) {
+    public void deleteById(Integer id) {
         floorRepository.deleteById(id);
     }
 }

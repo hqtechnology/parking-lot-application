@@ -20,7 +20,7 @@ public class ApplicationMain {
         SpringApplication.run(ApplicationMain.class, args);
     }
 
-//    @Bean
+    //    @Bean
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
 

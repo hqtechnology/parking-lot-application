@@ -16,6 +16,6 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
             HttpMessageNotReadableException ex, HttpHeaders headers,
             HttpStatus status, WebRequest request) {
 
-       return ResponseEntity.status(status).body(ExceptionUtils.getStackTrace(ex));
+        return ResponseEntity.status(status).body(ExceptionUtils.getStackTrace(ex));
     }
 }

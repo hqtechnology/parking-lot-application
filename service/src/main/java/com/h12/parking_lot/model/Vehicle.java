@@ -15,18 +15,17 @@ public class Vehicle {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
     public VehicleType type;
-
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private ParkingSlot parkingSlot;
+//    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+//    private ParkingSlot parkingSlot;
 
     public Vehicle() {
     }
 
-    public Vehicle(Integer id, VehicleType type, ParkingSlot parkingSlot) {
-        this.id = id;
-        this.type = type;
-        this.parkingSlot = parkingSlot;
-    }
+//    public Vehicle(Integer id, VehicleType type, ParkingSlot parkingSlot) {
+//        this.id = id;
+//        this.type = type;
+//        this.parkingSlot = parkingSlot;
+//    }
 
     public Vehicle(Integer id, VehicleType type) {
         this.id = id;

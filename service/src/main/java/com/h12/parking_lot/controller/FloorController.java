@@ -28,7 +28,7 @@ public class FloorController {
     }
 
     @GetMapping("/")
-    public ResponseEntity getFloor(@RequestParam("id") String id) {
+    public ResponseEntity getFloor(@RequestParam("id") Integer id) {
         try {
             Floor building = floorService.getById(id);
             return ResponseEntity.ok().body(building);
@@ -47,7 +47,7 @@ public class FloorController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity getFloorById(@PathVariable("id") String id) {
+    public ResponseEntity getFloorById(@PathVariable("id") Integer id) {
         try {
             Floor building = floorService.getById(id);
             return ResponseEntity.ok().body(building);
@@ -67,7 +67,7 @@ public class FloorController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteFloor(@PathVariable("id") String id) {
+    public ResponseEntity deleteFloor(@PathVariable("id") Integer id) {
         try {
             floorService.deleteById(id);
             return ResponseEntity.ok().body("Deleted.");
