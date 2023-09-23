@@ -43,6 +43,7 @@ archivesBaseName = 'parking-lot-application'
 
 
 dependencies {
+    runtimeOnly project(':frontend')
     implementation group: 'org.postgresql', name: 'postgresql', version: '42.3.8'
     implementation 'junit:junit:4.13.2'
     implementation group: 'javax.persistence', name: 'javax.persistence-api', version: '2.2'
@@ -73,6 +74,18 @@ bootJar {
         attributes 'Main-Class' : 'com.h12.parking_lot.ApplicationMain'
     }
 }
+
+compileJava.dependsOn ':frontend:build'
+
+tasks.register('copyWebApp', Copy) {
+    dependsOn(":frontend:build")
+    from "$rootDir/frontend/build/webapp/"
+    into "$rootDir/service/build/resources/main/"
+}
+build.dependsOn(copyWebApp)
+bootJar.dependsOn(copyWebApp)
+resolveMainClassName.dependsOn(copyWebApp)
+jar.dependsOn(copyWebApp)
 
 tasks.register("prepareKotlinBuildScriptModel") {}
 
