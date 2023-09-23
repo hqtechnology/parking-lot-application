@@ -28,8 +28,13 @@ public class BuildingService {
         buildingRepository.updateName(building.getName(), building.getId());
     }
 
-    public void update(Building building) {
-        buildingRepository.updateNameAndAddress(building.getName(), building.getAddress(), building.getId());
+    public int update(Building building) {
+        if(building.getAddress() == null) {
+            return buildingRepository.updateName(building.getName(), building.getId());
+        }
+//        buildingRepository.save(building);
+//        return 1;
+        return buildingRepository.updateNameAndAddress(building.getName(), building.getAddress(), building.getId());
     }
 
     public void delete(Building building) {

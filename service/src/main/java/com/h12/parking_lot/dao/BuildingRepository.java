@@ -5,13 +5,16 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 public interface BuildingRepository extends JpaRepository<Building, String> {
     @Modifying
-    @Query(value = "UPDATE buildings SET name = :name WHERE id = :id", nativeQuery = true)
-    void updateName(@Param("name") String name, @Param("id") String id);
+    @Transactional
+    @Query(value = "UPDATE Building b SET b.name = :name WHERE b.id = :id")
+    int updateName(@Param("name") String name, @Param("id") String id);
 
     @Modifying
-    @Query(value = "UPDATE buildings SET name = :name, address = :address WHERE id = :id", nativeQuery = true)
-    void updateNameAndAddress(@Param("name") String name,@Param("address") String address, @Param("id") String id);
+    @Transactional
+    @Query(value = "UPDATE Building b SET b.name = :name, b.address = :address WHERE b.id = :id")
+    int updateNameAndAddress(@Param("name") String name, @Param("address") String address, @Param("id") String id);
 }

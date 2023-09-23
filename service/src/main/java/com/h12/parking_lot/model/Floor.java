@@ -16,8 +16,8 @@ public class Floor {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
-    private int floorCapacity;
-    private int floorNumber;
+    public int floorCapacity;
+    public int floorNumber;
 
     @OneToMany(fetch = FetchType.EAGER)
     private List<ParkingSlot> parkingSlots;

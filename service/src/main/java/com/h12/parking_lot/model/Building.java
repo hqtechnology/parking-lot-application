@@ -19,8 +19,8 @@ public class Building {
     @Column(name = "id")
     private String id;
     @NotNull
-    private String name;
-    private String address;
+    public String name;
+    public String address;
 
     @OneToMany(targetEntity = Floor.class, fetch = FetchType.EAGER)
     private List<Floor> floors;

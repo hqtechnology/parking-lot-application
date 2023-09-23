@@ -14,7 +14,7 @@ public class Vehicle {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
-    private VehicleType type;
+    public VehicleType type;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private ParkingSlot parkingSlot;

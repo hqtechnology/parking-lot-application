@@ -52,11 +52,11 @@ public class BuildingController {
         }
     }
 
-    @PatchMapping("/")
+    @PutMapping("/")
     public ResponseEntity updateBuilding(@RequestBody Building building) {
         try {
-            buildingService.update(building);
-            return ResponseEntity.ok().body(building);
+            int building1 = buildingService.update(building);
+            return ResponseEntity.ok().body("Response from DB: " + building1);
         } catch (Exception e) {
             return ResponseEntity.ok().body(e.getMessage());
         }

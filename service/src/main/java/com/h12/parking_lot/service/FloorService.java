@@ -5,6 +5,8 @@ import com.h12.parking_lot.model.Floor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class FloorService {
     private final FloorRepository floorRepository;
@@ -23,11 +25,16 @@ public class FloorService {
     }
 
     public void updateName(Floor floor) {
-//        floorRepository.updateName(floor.getName(), floor.getId());
+        floorRepository.save(floor);
     }
 
-    public void update(Floor floor) {
-//        floorRepository.updateNameAndAddress(floor.getName(), floor.getAddress(), floor.getId());
+    public int update(Floor floor) {
+        floorRepository.save(floor);
+        return 1;
+    }
+
+    public List<Floor> getAll() {
+        return floorRepository.findAll();
     }
 
     public void delete(Floor floor) {

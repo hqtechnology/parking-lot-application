@@ -14,8 +14,8 @@ public class ParkingSlot {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
-    private int slotNumber;
-    private boolean isOccupied;
+    public int slotNumber;
+    public boolean isOccupied;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "floor.id")

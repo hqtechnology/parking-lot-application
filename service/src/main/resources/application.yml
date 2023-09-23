@@ -3,27 +3,22 @@ server:
   scheme: http
   port: 8080
 
-#management:
-#  endpoints:
-#    web:
-#      exposure:
-#        include: info, health, configprops, env, prometheus, metrics
-#  security:
-#    enabled: false
-
 management:
   endpoints:
     web:
       exposure:
-        include: openapi, swagger-ui
+        include: info, health, configprops, env, prometheus, metrics, openapi, swagger-ui
+  security:
+    enabled: false
 
 springdoc:
-  use-management-port: true
+  use-management-port: false
   show-actuator: true
   api-docs:
     path: /api-docs
   swagger-ui:
-    path: /swagger-ui.html
+    path: /swagger-ui
+
 spring:
   config:
     use-legacy-processing: false
@@ -35,6 +30,10 @@ spring:
     username: postgres
     generateDDL: true
   jpa:
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: validate
     hibernate:
       ddl-auto: create
 
