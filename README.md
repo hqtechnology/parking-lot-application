@@ -1,43 +1,52 @@
 # Spring application Based on below requirements.
+
 <details>
 <summary>Parking Lot Details</summary>
 
 #### The functions that the parking lot system can do:
+
 - Create the parking lot.
 - Add floors to the parking lot.
 - Add a parking lot slot to any of the floors.
 - Given a vehicle, it finds the first available slot, books it, creates a ticket, parks the vehicle, and finally returns the ticket.
-Unparks a vehicle given the ticket id.
+  Unparks a vehicle given the ticket id.
 - Displays the number of free slots per floor for a specific vehicle type.
 - Displays all the free slots per floor for a specific vehicle type.
 - Displays all the occupied slots per floor for a specific vehicle type.
 - Details about the Vehicles:
 - Every vehicle will have a type, registration number, and color.
+
 #### Different Types of Vehicles:
-  - Car
-  - Bike
-  - Truck
+
+- Car
+- Bike
+- Truck
+
 #### Details about the Parking Slots:
-  - Each type of slot can park a specific type of vehicle.
-  - No other vehicle should be allowed by the system.
-  - Finding the first available slot should be based on:
-    - The slot should be of the same type as the vehicle.
-    - The slot should be on the lowest possible floor in the parking lot.
-    - The slot should have the lowest possible slot number on the floor.
-  - Numbered serially from 1 to n for each floor where n is the number of parking slots on that floor.
+
+- Each type of slot can park a specific type of vehicle.
+- No other vehicle should be allowed by the system.
+- Finding the first available slot should be based on:
+  - The slot should be of the same type as the vehicle.
+  - The slot should be on the lowest possible floor in the parking lot.
+  - The slot should have the lowest possible slot number on the floor.
+- Numbered serially from 1 to n for each floor where n is the number of parking slots on that floor.
+
 #### Details about the Parking Lot Floors:
-  - Numbered serially from 1 to n where n is the number of floors.
-  - Might contain one or more parking lot slots of different types.
-  - We will assume that the first slot on each floor will be for a truck, the next 2 for bikes, and all the other slots for cars.
+
+- Numbered serially from 1 to n where n is the number of floors.
+- Might contain one or more parking lot slots of different types.
+- We will assume that the first slot on each floor will be for a truck, the next 2 for bikes, and all the other slots for cars.
+
 #### Details about the Tickets:
-  - The ticket id would be of the following format:
-    <parking_lot_id>_<floor_no>_<slot_no>
-    Example: PR1234_2_5 (denotes 5th slot of 2nd floor of parking lot PR1234)
+
+- The ticket id would be of the following format:
+  <parking*lot_id>*<floor*no>*<slot_no>
+  Example: PR1234_2_5 (denotes 5th slot of 2nd floor of parking lot PR1234)
+
 #### We can assume that there will only be 1 parking lot. The ID of that parking lot is PR1234.
+
 </details>
 
 > [!NOTE]
 > [SWAGGER](https://github.com/hqtechnology/parking-lot-application/blob/main/SWAGGER.md)
-
-
-<script src="http://code.jquery.com/jquery-1.4.2.min.js" type="text/javascript"></script>
