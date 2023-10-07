@@ -1,10 +1,15 @@
 package com.h12.parking_lot.controller;
 
-import com.h12.parking_lot.model.Building;
+import com.h12.parking_lot.model.building.Building;
+import com.h12.parking_lot.model.dto.BuildingDto;
 import com.h12.parking_lot.service.BuildingService;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController()
 @RequestMapping("/buildings")
@@ -12,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 public class BuildingController {
     @Autowired
     private BuildingService buildingService;
+    @Autowired
+    private ModelMapper modelMapper;
 
     @PostMapping("/")
     public ResponseEntity newBuilding(@RequestBody Building building) {
@@ -27,7 +34,8 @@ public class BuildingController {
     public ResponseEntity getBuilding(@RequestParam("id") String id) {
         try {
             Building building = buildingService.getById(id);
-            return ResponseEntity.ok().body(building);
+            BuildingDto buildingDto = modelMapper.map(building, BuildingDto.class);
+            return ResponseEntity.ok().body(buildingDto);
         } catch (Exception e) {
             return ResponseEntity.ok().body(e.getMessage());
         }
@@ -36,7 +44,12 @@ public class BuildingController {
     @GetMapping("/all")
     public ResponseEntity getAllBuilding() {
         try {
-            return ResponseEntity.ok().body(buildingService.getAll());
+            List<BuildingDto> buildingDtoList = new ArrayList<>();
+            for (Building b :
+                    buildingService.getAll()) {
+                buildingDtoList.add(modelMapper.map(b, BuildingDto.class));
+            }
+            return ResponseEntity.ok().body(buildingDtoList);
         } catch (Exception e) {
             return ResponseEntity.ok().body(e.getMessage());
         }
@@ -46,7 +59,8 @@ public class BuildingController {
     public ResponseEntity getBuildingById(@PathVariable("id") String id) {
         try {
             Building building = buildingService.getById(id);
-            return ResponseEntity.ok().body(building);
+            BuildingDto buildingDto = modelMapper.map(building, BuildingDto.class);
+            return ResponseEntity.ok().body(buildingDto);
         } catch (Exception e) {
             return ResponseEntity.ok().body(e.getMessage());
         }
@@ -56,7 +70,7 @@ public class BuildingController {
     public ResponseEntity updateBuilding(@RequestBody Building building) {
         try {
             int building1 = buildingService.update(building);
-            return ResponseEntity.ok().body("Response from DB: " + building1);
+            return ResponseEntity.ok().body("Updated building: " + building1);
         } catch (Exception e) {
             return ResponseEntity.ok().body(e.getMessage());
         }

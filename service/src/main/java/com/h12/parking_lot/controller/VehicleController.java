@@ -1,6 +1,6 @@
 package com.h12.parking_lot.controller;
 
-import com.h12.parking_lot.model.Vehicle;
+import com.h12.parking_lot.model.vehicle.Vehicle;
 import com.h12.parking_lot.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

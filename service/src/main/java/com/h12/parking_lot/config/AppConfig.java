@@ -1,8 +1,10 @@
 package com.h12.parking_lot.config;
 
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
@@ -15,6 +17,16 @@ import java.util.Map;
 @Configuration
 public class AppConfig {
     private final Logger LOGGER = LoggerFactory.getLogger(getClass());
+
+    @Bean
+    public AccessLog accessLog() {
+        return new AccessLog();
+    }
+
+    @Bean
+    public ModelMapper modelMapper() {
+        return new ModelMapper();
+    }
 
     @EventListener
     public void handleContextRefresh(ContextRefreshedEvent event) {

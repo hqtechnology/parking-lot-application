@@ -1,4 +1,4 @@
-package com.h12.parking_lot.model;
+package com.h12.parking_lot.model.user;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -7,9 +7,9 @@ import lombok.Data;
 @Entity
 @Table(name = "user")
 public class User {
+    public String name;
+    public String phone;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    public String name;
-    public String phone;
 }

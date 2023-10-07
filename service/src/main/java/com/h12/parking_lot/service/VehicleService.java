@@ -1,7 +1,9 @@
 package com.h12.parking_lot.service;
 
 import com.h12.parking_lot.dao.VehicleRepository;
-import com.h12.parking_lot.model.Vehicle;
+import com.h12.parking_lot.model.vehicle.Vehicle;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +11,7 @@ import java.util.List;
 
 @Service
 public class VehicleService {
+    private static final Logger log = LoggerFactory.getLogger(VehicleService.class);
     private final VehicleRepository vehicleRepository;
 
     @Autowired
@@ -21,6 +24,7 @@ public class VehicleService {
     }
 
     public void save(Vehicle vehicle) {
+        log.info(vehicle + " is being saved.");
         vehicleRepository.save(vehicle);
     }
 

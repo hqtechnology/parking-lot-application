@@ -1,7 +1,7 @@
 package com.h12.parking_lot.service;
 
 import com.h12.parking_lot.dao.ParkingRepository;
-import com.h12.parking_lot.model.ParkingSlot;
+import com.h12.parking_lot.model.parking.ParkingSlot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +10,8 @@ import java.util.List;
 @Service
 public class ParkingService {
     private final ParkingRepository parkingLotDAO;
+    @Autowired
+    private FloorService floorService;
 
     @Autowired
     public ParkingService(ParkingRepository parkingLotDAO) {
@@ -25,11 +27,11 @@ public class ParkingService {
     }
 
     public int update(ParkingSlot parkingSlot) {
-        ParkingSlot parkingSlot1 = parkingLotDAO.findById(parkingSlot.getId()).get();
+        ParkingSlot parkingSlot1 = parkingLotDAO.findById(parkingSlot.getParkingId()).get();
         parkingSlot1.slotNumber = parkingSlot.slotNumber;
         parkingSlot1.isOccupied = parkingSlot.isOccupied;
         parkingSlot1.setVehicle(parkingSlot.getVehicle());
-        parkingSlot1.setFloor(parkingSlot.getFloor());
+//        parkingSlot1.setFloor(parkingSlot.getFloor());
         parkingLotDAO.save(parkingSlot1);
         return 1;
     }

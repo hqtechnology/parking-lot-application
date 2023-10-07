@@ -1,7 +1,7 @@
 package com.h12.parking_lot.service;
 
 import com.h12.parking_lot.dao.FloorRepository;
-import com.h12.parking_lot.model.Floor;
+import com.h12.parking_lot.model.floor.Floor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,7 +25,7 @@ public class FloorService {
     }
 
     public int update(Floor floor) {
-        Floor floor1 = floorRepository.findById(floor.getId()).get();
+        Floor floor1 = floorRepository.findById(floor.getFloorId()).get();
         floor1.floorCapacity = floor.floorCapacity;
         floor1.floorNumber = floor.floorNumber;
         floorRepository.save(floor1);

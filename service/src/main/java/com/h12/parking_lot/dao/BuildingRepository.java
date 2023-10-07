@@ -1,6 +1,6 @@
 package com.h12.parking_lot.dao;
 
-import com.h12.parking_lot.model.Building;
+import com.h12.parking_lot.model.building.Building;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
