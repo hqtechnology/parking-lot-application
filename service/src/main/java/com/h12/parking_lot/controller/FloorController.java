@@ -1,6 +1,6 @@
 package com.h12.parking_lot.controller;
 
-import com.h12.parking_lot.model.dto.FloorDto;
+import com.h12.parking_lot.model.floor.FloorDto;
 import com.h12.parking_lot.model.floor.Floor;
 import com.h12.parking_lot.service.FloorService;
 import org.modelmapper.ModelMapper;
@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController()
-@RequestMapping("/floor/{userId}")
+@RequestMapping("/floor")
 @SuppressWarnings({"rawtypes"})
 public class FloorController {
     private final FloorService floorService;

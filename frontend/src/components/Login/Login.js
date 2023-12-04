@@ -10,9 +10,9 @@ import Card from '../UI/Card/Card';
 import classes from './Login.module.css';
 import Button from '../UI/Button/Button';
 import AuthContext from '../../store/auth-context';
-import Input from '../UI/input/Input';
+import Input from '../UI/Input/Input';
 
-const Login = (props) => {
+const Login = () => {
   const ctx = useContext(AuthContext);
 
   const [formIsValid, setFormIsValid] = useState(false);
@@ -123,35 +123,40 @@ const Login = (props) => {
   };
 
   return (
-    <Card className={classes.login}>
-      <form onSubmit={submitHandler}>
-        <Input
-          ref={emailInputRef}
-          id="email"
-          type="email"
-          label="E-Mail"
-          value={emailState.value}
-          isValid={emailIsValid}
-          onChange={emailChangeHandler}
-          onBlur={validateEmailHandler}
-        />
-        <Input
-          ref={passwordInputRef}
-          id="password"
-          type="password"
-          label="Password"
-          value={passwordState.value}
-          isValid={passwordIsValid}
-          onChange={passwordChangeHandler}
-          onBlur={validatePasswordHandler}
-        />
-        <div className={classes.actions}>
-          <Button type="submit" className={classes.btn}>
-            Login
-          </Button>
-        </div>
-      </form>
-    </Card>
+    <React.Fragment>
+      {!ctx.isLoggedIn && (
+        <Card className={classes.login}>
+          <form onSubmit={submitHandler}>
+            <Input
+              ref={emailInputRef}
+              id="email"
+              type="email"
+              label="E-Mail"
+              value={emailState.value}
+              isValid={emailIsValid}
+              onChange={emailChangeHandler}
+              onBlur={validateEmailHandler}
+            />
+            <Input
+              ref={passwordInputRef}
+              id="password"
+              type="password"
+              label="Password"
+              value={passwordState.value}
+              isValid={passwordIsValid}
+              onChange={passwordChangeHandler}
+              onBlur={validatePasswordHandler}
+            />
+            <div className={classes.actions}>
+              <Button type="submit" className={classes.btn}>
+                Login
+              </Button>
+            </div>
+          </form>
+        </Card>
+      )}
+      {ctx.isLoggedIn && <h1>Hello User, you already logged in!</h1>}
+    </React.Fragment>
   );
 };
 

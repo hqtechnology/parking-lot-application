@@ -11,8 +11,13 @@ import java.util.List;
 
 @Service
 public class BuildingService {
+
+    private final BuildingRepository buildingRepository;
+
     @Autowired
-    private BuildingRepository buildingRepository;
+    public BuildingService(BuildingRepository buildingRepository) {
+        this.buildingRepository = buildingRepository;
+    }
 
     public Building getById(String id) {
         return buildingRepository.findById(id).get();
@@ -40,8 +45,6 @@ public class BuildingService {
         if (building.getAddress() == null) {
             return buildingRepository.updateName(building.getName(), building.getBuildingId());
         }
-//        buildingRepository.save(building);
-//        return 1;
         return buildingRepository.updateNameAndAddress(building.getName(), building.getAddress(), building.getBuildingId());
     }
 

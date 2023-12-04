@@ -1,19 +1,35 @@
-import React, { useContext } from 'react';
-import MainHeader from './components/MainHeader/MainHeader';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import ErrorLayout from './components/Error/Error';
 import Login from './components/Login/Login';
-import Home from './components/Home/Home';
-import AuthContext from './store/auth-context';
+import Logout from './components/Login/Logout';
+import RootLayout from './components/UI/Root/Root';
+import Users from './components/UI/Users/Users';
+import Admin from './components/UI/Admin/Admin';
+import { AuthContextProvider } from './store/auth-context';
+import Vehicle from './components/UI/Velicles/Vehicle';
+import Home from './components/UI/Home/Home';
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <RootLayout />,
+    errorElement: <ErrorLayout />,
+    children: [
+      { path: '/', element: <Home /> },
+      { path: '/login', element: <Login /> },
+      { path: '/logout', element: <Logout /> },
+      { path: '/users', element: <Users /> },
+      { path: '/admin', element: <Admin /> },
+    ],
+  },
+  { path: '/vehicles', element: <Vehicle />, errorElement: <ErrorLayout /> },
+]);
 
 function App() {
-  const ctx = useContext(AuthContext);
   return (
-    <React.Fragment>
-      <MainHeader onLogout={ctx.onLogout} />
-      <main>
-        {!ctx.isLoggedIn && <Login />}
-        {ctx.isLoggedIn && <Home />}
-      </main>
-    </React.Fragment>
+    <AuthContextProvider>
+      <RouterProvider router={router} />
+    </AuthContextProvider>
   );
 }
 

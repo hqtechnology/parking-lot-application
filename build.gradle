@@ -78,6 +78,8 @@ subprojects {
                 exclude module: "$it"
             }
         }
+        implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: "${springBootVersion}"
+
         implementation group: 'org.springframework.boot', name: 'spring-boot-starter-parent', version: "${springBootVersion}", ext: 'pom'
         implementation group: 'org.springframework.boot', name: 'spring-boot-starter-undertow', version: "${springBootVersion}"
 //        implementation("org.springframework.boot:spring-boot-starter-aop:${springBootVersion}")
@@ -117,6 +119,9 @@ subprojects {
             exclude group: 'log4j', module: 'log4j-slf4j-impl'
         }
         implementation("org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:${sonarQubeVarsion}")
+        implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.12.1'
+        implementation group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.12.1'
+
 
 
         testImplementation "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"

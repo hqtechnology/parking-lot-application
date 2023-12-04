@@ -12,11 +12,12 @@ import lombok.Data;
         })
 })
 public class Vehicle {
-    public VehicleType type;
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "ID")
     private Integer id;
+    public VehicleType type;
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "vehicle")
     private ParkingSlot parkingSlot;
 

@@ -10,12 +10,12 @@ import java.util.List;
 @Service
 public class ParkingService {
     private final ParkingRepository parkingLotDAO;
-    @Autowired
-    private FloorService floorService;
+    private final FloorService floorService;
 
     @Autowired
-    public ParkingService(ParkingRepository parkingLotDAO) {
+    public ParkingService(ParkingRepository parkingLotDAO, FloorService floorService) {
         this.parkingLotDAO = parkingLotDAO;
+        this.floorService = floorService;
     }
 
     public ParkingSlot getById(Integer id) {
@@ -31,7 +31,6 @@ public class ParkingService {
         parkingSlot1.slotNumber = parkingSlot.slotNumber;
         parkingSlot1.isOccupied = parkingSlot.isOccupied;
         parkingSlot1.setVehicle(parkingSlot.getVehicle());
-//        parkingSlot1.setFloor(parkingSlot.getFloor());
         parkingLotDAO.save(parkingSlot1);
         return 1;
     }

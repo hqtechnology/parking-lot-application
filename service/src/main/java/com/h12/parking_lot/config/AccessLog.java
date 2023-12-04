@@ -19,7 +19,7 @@ public class AccessLog {
         return queryString == null ? requestPath : requestPath + "?" + queryString;
     }
 
-    @Before("within(com.htakemoto.rest.controller.*)")
+    @Before("within(com.h12.parking_lot.*)")
     public void log() {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getRequest();
         String requestURL = getFullURL(request);

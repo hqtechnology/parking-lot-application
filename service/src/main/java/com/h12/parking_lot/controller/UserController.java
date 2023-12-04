@@ -1,6 +1,6 @@
 package com.h12.parking_lot.controller;
 
-import com.h12.parking_lot.model.dto.UserDto;
+import com.h12.parking_lot.model.user.UserDto;
 import com.h12.parking_lot.model.user.User;
 import com.h12.parking_lot.service.UserService;
 import org.modelmapper.ModelMapper;
@@ -20,26 +20,32 @@ public class UserController {
     protected static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
     @Autowired
     protected ModelMapper pojoMapper;
+
+    private final UserService userService;
+
     @Autowired
-    private UserService userService;
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
 
     // POST: http://localhost:8080/users
     // Content-Type: application/json
     // Payload: { "firstname": "Harish", "lastname": "Maddy" }
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public User createUser(@RequestBody User user) {
+    public UserDto createUser(@RequestBody User user) {
         LOGGER.debug("Received request to create the {}", user);
-        return userService.save(user);
+        return pojoMapper.map(userService.save(user), UserDto.class);
     }
 
     // GET: http://localhost:8080/users
     @RequestMapping(value = "", method = RequestMethod.GET)
     public List<UserDto> getUsers() {
         LOGGER.debug("Received request to list all users");
-        List<User> users = new ArrayList<User>();
-        users = (List<User>) userService.findAll();
+        List<User> users;
+        users = userService.findAll();
         // convert User to UserDto
-        List<UserDto> usersResponse = new ArrayList<UserDto>();
+        List<UserDto> usersResponse = new ArrayList<>();
         for (User user : users) {
             usersResponse.add(pojoMapper.map(user, UserDto.class));
         }
@@ -48,31 +54,37 @@ public class UserController {
 
     // GET: http://localhost:8080/users/1
     @RequestMapping(value = "/{userId}", method = RequestMethod.GET)
-    public User getUser(@PathVariable long userId) {
-        return userService.findOne(userId);
+    public UserDto getUser(@PathVariable long userId) {
+        return pojoMapper.map(userService.findOne(userId), UserDto.class);
     }
 
     // GET: http://localhost:8080/users/search?firstname=be
     @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public List<User> findUsers(@RequestParam String firstname) {
+    public List<UserDto> findUsers(@RequestParam String firstname) {
         Assert.isTrue(!firstname.isEmpty(), "firstname parameter must be present");
-        return userService.findByFirstnameStartingWith(firstname);
+        List<User> users;
+        users = userService.findByFirstnameStartingWith(firstname);
+        List<UserDto> usersResponse = new ArrayList<>();
+        for (User user : users) {
+            usersResponse.add(pojoMapper.map(user, UserDto.class));
+        }
+        return usersResponse;
     }
 
     // PUT: http://localhost:8080/users/1
     // Content-Type: application/json
     // Payload: { "firstname": "Modified", "lastname": "Name" }
     @RequestMapping(value = "/{userId}", method = RequestMethod.PUT)
-    public User updateUser(@PathVariable long userId, @RequestBody User user) {
+    public UserDto updateUser(@PathVariable long userId, @RequestBody User user) {
         user.setId(userId);
-        return userService.update(user);
+        return pojoMapper.map(userService.update(user), UserDto.class);
     }
 
     // DELETE: http://localhost:8080/users/1
     @RequestMapping(value = "/{userId}", method = RequestMethod.DELETE)
     public String deleteUser(@PathVariable long userId) {
         userService.delete(userId);
-        return userId + " is Deleted";
+        return userId + " is Deleted.";
     }
 
 }

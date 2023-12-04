@@ -23,9 +23,9 @@ public class VehicleService {
         return vehicleRepository.findById(id).get();
     }
 
-    public void save(Vehicle vehicle) {
+    public Vehicle save(Vehicle vehicle) {
         log.info(vehicle + " is being saved.");
-        vehicleRepository.save(vehicle);
+        return vehicleRepository.save(vehicle);
     }
 
     public int update(Vehicle vehicle) {

@@ -20,6 +20,7 @@ public class ParkingController {
 
     @GetMapping("/freeSlots")
     public ResponseEntity getFreeSlots(int parkingSlotNumber) {
+        //TODO: Logic to be implemented.
         return ResponseEntity.ok().build();
     }
 

@@ -1,7 +1,8 @@
 package com.h12.parking_lot.controller;
 
 import com.h12.parking_lot.model.building.Building;
-import com.h12.parking_lot.model.dto.BuildingDto;
+import com.h12.parking_lot.model.building.BuildingDto;
+import com.h12.parking_lot.response.model.Response;
 import com.h12.parking_lot.service.BuildingService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,37 +22,37 @@ public class BuildingController {
     private ModelMapper modelMapper;
 
     @PostMapping("/")
-    public ResponseEntity newBuilding(@RequestBody Building building) {
+    public ResponseEntity<Response> newBuilding(@RequestBody Building building) {
         try {
             buildingService.save(building);
-            return ResponseEntity.ok().body("Building saved");
+            return ResponseEntity.ok().body(Response.of(null, "Building saved.", null));
         } catch (Exception e) {
-            return ResponseEntity.ok().body(e.getMessage());
+            return ResponseEntity.ok().body(Response.of(null, "", null));
         }
     }
 
     @GetMapping("/")
-    public ResponseEntity getBuilding(@RequestParam("id") String id) {
+    public ResponseEntity<Response> getBuilding(@RequestParam("id") String id) {
         try {
             Building building = buildingService.getById(id);
             BuildingDto buildingDto = modelMapper.map(building, BuildingDto.class);
-            return ResponseEntity.ok().body(buildingDto);
+            return ResponseEntity.ok().body(Response.of(buildingDto));
         } catch (Exception e) {
-            return ResponseEntity.ok().body(e.getMessage());
+            return ResponseEntity.ok().body(Response.of(null, e.getMessage(), null));
         }
     }
 
     @GetMapping("/all")
-    public ResponseEntity getAllBuilding() {
+    public ResponseEntity<Response> getAllBuilding() {
         try {
             List<BuildingDto> buildingDtoList = new ArrayList<>();
             for (Building b :
                     buildingService.getAll()) {
                 buildingDtoList.add(modelMapper.map(b, BuildingDto.class));
             }
-            return ResponseEntity.ok().body(buildingDtoList);
+            return ResponseEntity.ok().body(Response.of(buildingDtoList));
         } catch (Exception e) {
-            return ResponseEntity.ok().body(e.getMessage());
+            return ResponseEntity.ok().body(Response.of(null, e.getMessage(), null));
         }
     }
 
@@ -67,23 +68,22 @@ public class BuildingController {
     }
 
     @PutMapping("/")
-    public ResponseEntity updateBuilding(@RequestBody Building building) {
+    public ResponseEntity<Response> updateBuilding(@RequestBody Building building) {
         try {
             int building1 = buildingService.update(building);
-            return ResponseEntity.ok().body("Updated building: " + building1);
+            return ResponseEntity.ok().body(Response.of("Updated building: " + building1));
         } catch (Exception e) {
-            return ResponseEntity.ok().body(e.getMessage());
+            return ResponseEntity.ok().body(Response.of(null, e.getMessage(), null));
         }
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteBuilding(@PathVariable("id") String id) {
+    public ResponseEntity<Response> deleteBuilding(@PathVariable("id") String id) {
         try {
             buildingService.deleteById(id);
-            return ResponseEntity.ok().body("Deleted.");
+            return ResponseEntity.ok().body(Response.of("DELETED."));
         } catch (Exception e) {
-            return ResponseEntity.ok().body(e.getMessage());
+            return ResponseEntity.ok().body(Response.of(null, e.getMessage(), null));
         }
     }
-
 }
