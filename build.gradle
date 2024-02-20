@@ -1,6 +1,6 @@
 buildscript {
     ext {
-//        mockitoVersion = "2.18.3"
+        //mockitoVersion = "2.18.3"
         springBootVersion = "3.1.4"
         springFrameworkVersion = "6.0.12"
         apacheCommonLangVersion = "3.0"
@@ -122,7 +122,9 @@ subprojects {
         implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.12.1'
         implementation group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.12.1'
 
-
+        implementation 'io.prometheus:simpleclient_dropwizard:0.0.16'
+        implementation 'io.prometheus:simpleclient_servlet:0.0.16'
+        implementation 'io.prometheus:simpleclient:0.0.16'
 
         testImplementation "org.springframework.boot:spring-boot-starter-test:${springBootVersion}"
 

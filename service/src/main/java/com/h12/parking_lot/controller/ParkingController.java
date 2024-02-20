@@ -24,7 +24,7 @@ public class ParkingController {
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/")
+    @PostMapping("/reserve")
     public ResponseEntity newParkingSlot(@RequestBody ParkingSlot parkingSlot) {
         try {
             parkingService.save(parkingSlot);

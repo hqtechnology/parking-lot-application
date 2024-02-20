@@ -1,5 +1,6 @@
 package com.h12.parking_lot;
 
+import org.springframework.boot.Banner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,7 +18,11 @@ public class ApplicationMain {
      * @param args command line arguments.
      */
     public static void main(String[] args) {
-        SpringApplication.run(ApplicationMain.class, args);
+        //SpringApplication.run(ApplicationMain.class, args);
+        SpringApplication application = new SpringApplication(ApplicationMain.class);
+        //application.setWebEnvironment(false);
+        application.setBannerMode(Banner.Mode.OFF);
+        application.run(args);
     }
 
     //    @Bean

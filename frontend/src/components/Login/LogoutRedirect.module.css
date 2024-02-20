@@ -21,6 +21,7 @@
 
 .button:focus {
     outline: none;
+    
 }
 
 button:disabled,

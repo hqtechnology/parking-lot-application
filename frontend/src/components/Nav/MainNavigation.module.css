@@ -33,3 +33,7 @@ nav {
   color: white;
   text-decoration: underline;
 }
+
+.disappear {
+  visibility: hidden;
+}

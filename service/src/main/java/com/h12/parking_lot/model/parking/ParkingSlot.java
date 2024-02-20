@@ -19,13 +19,13 @@ public class ParkingSlot {
     @Column(name = "ID")
     private Integer parkingId;
 
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "VEHICLE_ID", referencedColumnName = "id")
+    private Vehicle vehicle;
+
 //    @ManyToOne(fetch = FetchType.EAGER)
 //    @JoinColumn(name = "floor.id")
 //    private Floor floor;
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "VEHICLE_ID", referencedColumnName = "id")
-//    @PrimaryKeyJoinColumn
-    private Vehicle vehicle;
 
     public ParkingSlot() {
     }

@@ -50,3 +50,10 @@
 
 > [!NOTE]
 > [SWAGGER](https://github.com/hqtechnology/parking-lot-application/blob/main/SWAGGER.md)
+
+
+# Docker
+```shell
+docker run --name h12-pgsql -d -e POSTGRES_PASSWORD=postgres -p 2006:2006 postgres:latest 
+docker pull dpage/pgadmin4:8.2
+```

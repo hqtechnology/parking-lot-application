@@ -1,9 +1,9 @@
 import { React, useContext } from 'react';
 import AuthContext from '../../store/auth-context';
 import { NavLink } from 'react-router-dom';
-import LoginRedirect from '../Login/LoginRedirect';
 import classes from './MainNavigation.module.css';
 import LogoutRedirect from '../Login/LogoutRedirect';
+import Button from '../UI/Button/Button';
 
 const MainNavigation = () => {
   const ctx = useContext(AuthContext);
@@ -50,7 +50,16 @@ const MainNavigation = () => {
               Admin
             </NavLink>
           )}
-          {!ctx.isLoggedIn && <LoginRedirect />}
+          {!ctx.isLoggedIn && (
+            <NavLink
+              to="/login"
+              className={({ isActive }) =>
+                isActive ? classes.disappear : undefined
+              }
+            >
+              <Button>Login</Button>
+            </NavLink>
+          )}
           {ctx.isLoggedIn && <LogoutRedirect />}
         </div>
       </nav>

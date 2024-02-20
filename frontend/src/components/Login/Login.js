@@ -155,7 +155,7 @@ const Login = () => {
           </form>
         </Card>
       )}
-      {ctx.isLoggedIn && <h1>Hello User, you already logged in!</h1>}
+      {ctx.isLoggedIn && <h1>Hello User, you have logged in!</h1>}
     </React.Fragment>
   );
 };

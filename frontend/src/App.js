@@ -8,6 +8,7 @@ import Admin from './components/UI/Admin/Admin';
 import { AuthContextProvider } from './store/auth-context';
 import Vehicle from './components/UI/Velicles/Vehicle';
 import Home from './components/UI/Home/Home';
+import UserDetails from './components/UI/Users/UserDetails';
 
 const router = createBrowserRouter([
   {
@@ -15,14 +16,18 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     errorElement: <ErrorLayout />,
     children: [
-      { path: '/', element: <Home /> },
-      { path: '/login', element: <Login /> },
-      { path: '/logout', element: <Logout /> },
-      { path: '/users', element: <Users /> },
-      { path: '/admin', element: <Admin /> },
+      { index: true, element: <Home /> },
+      { path: 'login', element: <Login /> },
+      { path: 'logout', element: <Logout /> },
+      {
+        path: 'users',
+        element: <Users />,
+        children: [{ path: ':userId', element: <UserDetails /> }],
+      },
+      { path: 'admin', element: <Admin /> },
     ],
   },
-  { path: '/vehicles', element: <Vehicle />, errorElement: <ErrorLayout /> },
+  { path: 'vehicles', element: <Vehicle />, errorElement: <ErrorLayout /> },
 ]);
 
 function App() {
