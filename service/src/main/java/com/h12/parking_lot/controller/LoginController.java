@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.security.PrivateKey;
 import java.util.*;
 
 @RestController()
@@ -65,7 +64,7 @@ public class LoginController {
         return Jwts.builder()
                 .expiration(expirationDate)
                 .claim("scope", "read write")
-                .signWith(SignatureAlgorithm.HS256, keys.getPrivateKey().strip().replace("\n", "")) // You should use a secure key here
+                .signWith(SignatureAlgorithm.HS256, keys.getPrivateKey().strip().replace("\n", ""))
                 .compact();
     }
 

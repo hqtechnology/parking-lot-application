@@ -1,0 +1,14 @@
+spring:
+  config:
+    use-legacy-processing: false
+  datasource:
+    hikari:
+      maximumPoolSize: 5
+      connectionTimeout: 20000
+    url: ${JDBC_URL}
+    database: ${DATABASE_NAME}
+    username: ${DATABASE_USER}
+    password: ${DATABASE_PASSWD}
+  jpa:
+    hibernate:
+      ddl-auto: none

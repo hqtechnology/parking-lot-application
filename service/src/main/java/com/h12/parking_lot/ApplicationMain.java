@@ -3,6 +3,7 @@ package com.h12.parking_lot;
 import org.springframework.boot.Banner;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Configuration;
@@ -11,6 +12,7 @@ import java.util.Arrays;
 
 @SpringBootApplication
 @Configuration
+@EnableAutoConfiguration
 public class ApplicationMain {
     /**
      * Main function.

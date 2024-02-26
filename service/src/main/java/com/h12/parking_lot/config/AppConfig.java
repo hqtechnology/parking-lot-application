@@ -1,5 +1,6 @@
 package com.h12.parking_lot.config;
 
+import com.h12.parking_lot.model.jwt.JwtKeys;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,5 +37,10 @@ public class AppConfig {
         Map<RequestMappingInfo, HandlerMethod> map = requestMappingHandlerMapping
                 .getHandlerMethods();
         map.forEach((key, value) -> LOGGER.info("Mapping: {} {}", key, value));
+    }
+
+    @Bean
+    public JwtKeys createKeys() {
+        return new JwtKeys();
     }
 }
