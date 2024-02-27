@@ -9,6 +9,8 @@ import com.h12.parking_lot.response.model.Response;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.modelmapper.ModelMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -22,6 +24,7 @@ import java.util.*;
 
 @RestController()
 public class LoginController {
+    public static final Logger log = LoggerFactory.getLogger(LoginController.class);
     @Autowired
     private ModelMapper modelMapper;
     @Value("${login.username}")
@@ -36,7 +39,10 @@ public class LoginController {
         LogInResponse loginResponse = modelMapper.map(loginRequest, LogInResponse.class);
         loginResponse.setLoggedIn(true);
 
-        String providedUsername = loginRequest.getUsername();
+//        log.info("LoginRequest: {} {}", loginRequest.getEmail(), loginRequest.getPassword());
+//        System.out.printf("Login req: %s, %s.%n", loginRequest.getEmail(), loginRequest.getPassword());
+
+        String providedUsername = loginRequest.getEmail();
         String providedPassword = loginRequest.getPassword();
 
         if (username.equals(providedUsername) && password.equals(providedPassword)) {

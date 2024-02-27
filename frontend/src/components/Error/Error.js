@@ -1,11 +1,27 @@
+import { useRouteError } from 'react-router-dom';
+import PageContent from '../UI/Pages/PageContent';
+
 function ErrorLayout(props) {
-  console.log(props);
+  const error = useRouteError();
+
+  let title = 'An error occured!';
+  let message = 'Unknown error occured!';
+
+  if (error.status === 500) {
+    message = error.data.message;
+  }
+
+  if (error.status === 404) {
+    title = 'Not Found';
+    message = 'Cannot found the resource';
+  }
+
+  // console.log(props);
   return (
     <>
-      <main>
-        <h2>Error Occured</h2>
-        <h3>Check logs or Application status</h3>
-      </main>
+      <PageContent title={title}>
+        <p>{message}</p>
+      </PageContent>
     </>
   );
 }

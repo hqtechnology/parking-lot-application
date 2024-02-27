@@ -1,22 +1,14 @@
-import { React, useContext } from 'react';
-import AuthContext from '../../store/auth-context';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useRouteLoaderData, Form } from 'react-router-dom';
 import classes from './MainNavigation.module.css';
-import LogoutRedirect from '../Login/LogoutRedirect';
-import Button from '../UI/Button/Button';
 
 const MainNavigation = () => {
-  const ctx = useContext(AuthContext);
+  const token = useRouteLoaderData('root');
+
   return (
-    <div>
+    <header className={classes.header}>
       <nav>
-        <div className={classes.navbar}>
-          <div className={classes.logo}>
-            <NavLink to="/">
-              <img src="logo192.png" alt="Logo" />
-            </NavLink>
-          </div>
-          <div className={classes.name}>
+        <ul className={classes.list}>
+          <li>
             <NavLink
               to="/"
               className={({ isActive }) =>
@@ -24,46 +16,41 @@ const MainNavigation = () => {
               }
               end
             >
-              <h1>Parkinglot Application</h1>
+              Home
             </NavLink>
-          </div>
-
-          {ctx.isLoggedIn && (
+          </li>
+          <li>
             <NavLink
               to="/users"
               className={({ isActive }) =>
                 isActive ? classes.active : undefined
               }
-              end
             >
               Users
             </NavLink>
+          </li>
+          {!token && (
+            <li>
+              <NavLink
+                to="/auth?mode=login"
+                className={({ isActive }) =>
+                  isActive ? classes.active : undefined
+                }
+              >
+                Authentication
+              </NavLink>
+            </li>
           )}
-          {ctx.isLoggedIn && (
-            <NavLink
-              to="/admin"
-              className={({ isActive }) =>
-                isActive ? classes.active : undefined
-              }
-              end
-            >
-              Admin
-            </NavLink>
+          {token && (
+            <li>
+              <Form action="/logout" method="post">
+                <button>Logout</button>
+              </Form>
+            </li>
           )}
-          {!ctx.isLoggedIn && (
-            <NavLink
-              to="/login"
-              className={({ isActive }) =>
-                isActive ? classes.disappear : undefined
-              }
-            >
-              <Button>Login</Button>
-            </NavLink>
-          )}
-          {ctx.isLoggedIn && <LogoutRedirect />}
-        </div>
+        </ul>
       </nav>
-    </div>
+    </header>
   );
 };
 
