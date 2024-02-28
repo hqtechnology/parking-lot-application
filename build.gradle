@@ -97,12 +97,12 @@ subprojects {
         implementation('org.owasp.esapi:esapi:2.2.2.0') {
             exclude group: 'log4j', module: 'log4j'
         }
-        implementation("org.apache.logging.log4j:log4j-layout-template-json:2.17.2") {
-            exclude group: 'log4j', module: 'log4j-slf4j-impl'
-        }
+        implementation group: 'org.slf4j', name: 'slf4j-api', version: '2.0.12'
+        implementation group: 'org.slf4j', name: 'slf4j-simple', version: '2.0.12'
+//        implementation("org.apache.logging.log4j:log4j-layout-template-json:2.17.2") {
+//            exclude group: 'log4j', module: 'log4j-slf4j-impl'
+//        }
         implementation("org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:${sonarQubeVarsion}")
-        implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.12.1'
-        implementation group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.12.1'
 
         implementation 'io.prometheus:simpleclient_dropwizard:0.0.16'
         implementation 'io.prometheus:simpleclient_servlet:0.0.16'

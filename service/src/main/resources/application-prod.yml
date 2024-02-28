@@ -12,3 +12,6 @@ spring:
   jpa:
     hibernate:
       ddl-auto: none
+login:
+  username: ${LOGIN_USERNAME}
+  password: ${LOGIN_PASSWD}

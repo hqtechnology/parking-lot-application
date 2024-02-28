@@ -16,3 +16,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create
+
+login:
+  username: admin@h12.com
+  password: root123

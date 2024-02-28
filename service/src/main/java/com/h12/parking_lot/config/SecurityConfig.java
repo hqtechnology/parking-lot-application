@@ -1,6 +1,7 @@
 package com.h12.parking_lot.config;
 
 import com.h12.parking_lot.controller.filter.BasicAuthFilter;
+import com.h12.parking_lot.controller.filter.BearerTokenFilter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -32,7 +33,9 @@ public class SecurityConfig {
 //                    auth.requestMatchers("**/resources/**", "**/index.html", "**/swagger**", "/swagger**","**/api-docs**", "**/static/**").permitAll();
 //                })
                 .authorizeHttpRequests((auth) -> auth.anyRequest().permitAll())
+//                .addFilter(new BearerTokenFilter());
 //                .addFilterBefore(new JwtFilter(), BeforeJwtFilter.class);
+//                .addFilterBefore(new BearerTokenFilter(), BearerTokenFilter.class);
                 .addFilterAfter(new BasicAuthFilter(), BasicAuthenticationFilter.class);
 
         //http.addFilterBefore(new JwtFilter(), UsernamePasswordAuthenticationFilter.class);
