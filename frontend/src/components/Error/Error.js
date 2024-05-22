@@ -20,7 +20,9 @@ function ErrorLayout(props) {
   return (
     <>
       <PageContent title={title}>
-        <p>{message}</p>
+        <p>{message}</p> <br />
+        {error.status && <p>Status code: {error.status}</p>}
+        {error.toString()}
       </PageContent>
     </>
   );

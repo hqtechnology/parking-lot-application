@@ -5,34 +5,35 @@ import { getAuthToken } from '../../auth/auth';
 function UserNavigation() {
   const token = getAuthToken();
   return (
-    <header>
-      <nav>
-        <ul className={classes.list}>
-          <li>
-            <NavLink
-              to="/users"
-              className={({ isActive }) =>
-                isActive ? classes.active : undefined
-              }
-              end
-            >
-              All Users
-            </NavLink>
-          </li>
-          {token && (
+    <header className={classes.header}>
+      {token && (
+        <nav>
+          <ul className={classes.list}>
             <li>
               <NavLink
-                to="/users/new"
+                to="/ui/users"
+                className={({ isActive }) =>
+                  isActive ? classes.active : undefined
+                }
+                end
+              >
+                All Users
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink
+                to="/ui/users/new"
                 className={({ isActive }) =>
                   isActive ? classes.active : undefined
                 }
               >
-                New Event
+                New User
               </NavLink>
             </li>
-          )}
-        </ul>
-      </nav>
+          </ul>
+        </nav>
+      )}
     </header>
   );
 }

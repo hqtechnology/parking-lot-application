@@ -16,8 +16,10 @@ export function getAuthToken() {
   }
 
   const tokenDuration = getTokenDuration();
+  const now = new Date();
+  const expiryTime = Date.parse(tokenDuration);
 
-  if (tokenDuration < 0) {
+  if (expiryTime && now >= expiryTime) {
     return 'EXPIRED';
   }
 

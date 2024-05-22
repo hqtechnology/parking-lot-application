@@ -1,7 +1,7 @@
 package com.h12.parking_lot.controller;
 
-import com.h12.parking_lot.model.user.UserDto;
 import com.h12.parking_lot.model.user.User;
+import com.h12.parking_lot.model.user.UserDto;
 import com.h12.parking_lot.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -18,21 +18,19 @@ import java.util.List;
 public class UserController {
 
     protected static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
+    private final UserService userService;
     @Autowired
     protected ModelMapper pojoMapper;
-
-    private final UserService userService;
 
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
     }
 
-
-    // POST: http://localhost:8080/users
+    // POST: http://localhost:8080/users/new
     // Content-Type: application/json
     // Payload: { "firstname": "Harish", "lastname": "Maddy" }
-    @RequestMapping(value = "", method = RequestMethod.POST)
+    @RequestMapping(value = "/new", method = RequestMethod.POST)
     public UserDto createUser(@RequestBody User user) {
         LOGGER.debug("Received request to create the {}", user);
         return pojoMapper.map(userService.save(user), UserDto.class);
@@ -60,10 +58,10 @@ public class UserController {
 
     // GET: http://localhost:8080/users/search?firstname=be
     @RequestMapping(value = "/search", method = RequestMethod.GET)
-    public List<UserDto> findUsers(@RequestParam String firstname) {
-        Assert.isTrue(!firstname.isEmpty(), "firstname parameter must be present");
+    public List<UserDto> findUsers(@RequestParam String username) {
+        Assert.isTrue(!username.isEmpty(), "username parameter must be present");
         List<User> users;
-        users = userService.findByFirstnameStartingWith(firstname);
+        users = userService.findByUsernameStartingWith(username);
         List<UserDto> usersResponse = new ArrayList<>();
         for (User user : users) {
             usersResponse.add(pojoMapper.map(user, UserDto.class));

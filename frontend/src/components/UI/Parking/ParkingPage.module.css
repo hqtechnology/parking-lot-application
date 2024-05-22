@@ -1,0 +1,21 @@
+.container {
+    /* border: 10px; */
+    border-color: #ffffff;
+    background-color: var(background-color);
+    border-radius: 10px;
+    border-style: none;
+}
+
+.button {
+    background-color: var(--color-gray-900);
+    color: var(--color-primary-100);
+    border-radius: 0.5rem;
+
+    
+}
+
+.button:hover {
+    color: var(--color-primary-800);
+    background-color: var(--color-gray-700);
+
+}

@@ -1,0 +1,15 @@
+.container {
+    /* border: 10px; */
+    border-color: #ffffff;
+    background-color: var(--color-gray-700);
+    border-radius: 10px;
+    border-style: none;
+
+}
+
+.grid {
+    border: 10px;
+    border-color: #000000;
+    background-color: #ffffff;
+    border-radius: 10px;
+}

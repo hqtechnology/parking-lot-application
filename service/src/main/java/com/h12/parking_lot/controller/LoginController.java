@@ -1,17 +1,18 @@
 package com.h12.parking_lot.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.h12.parking_lot.model.auth.LogInResponse;
 import com.h12.parking_lot.model.auth.LogOutForm;
 import com.h12.parking_lot.model.auth.LogOutResponse;
 import com.h12.parking_lot.model.auth.LoginForm;
 import com.h12.parking_lot.model.jwt.JwtKeys;
 import com.h12.parking_lot.response.model.Response;
+import com.h12.parking_lot.service.JwtService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
@@ -26,7 +27,7 @@ import java.util.*;
 @RestController()
 @Slf4j
 public class LoginController {
-//    public static final Logger log = LoggerFactory.getLogger(LoginController.class);
+    //    public static final Logger log = LoggerFactory.getLogger(LoginController.class);
     @Autowired
     private ModelMapper modelMapper;
     @Value("${login.username}")
@@ -35,23 +36,26 @@ public class LoginController {
     private String password;
     @Autowired
     private JwtKeys keys;
+    @Autowired
+    private JwtService jwtService;
+
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @PostMapping("/login")
-    public ResponseEntity login(@RequestBody LoginForm loginRequest) {
-        LogInResponse loginResponse = modelMapper.map(loginRequest, LogInResponse.class);
-        loginResponse.setLoggedIn(true);
+    public ResponseEntity login(@RequestBody LoginForm loginRequest) throws JsonProcessingException {
 
-        log.info("LoginRequest: {} {}", loginRequest.getEmail(), loginRequest.getPassword());
-//        System.out.printf("Login req: %s, %s.%n", loginRequest.getEmail(), loginRequest.getPassword());
+        log.debug("LoginRequest: username: {} passcode: ***", loginRequest.getEmail());
 
         String providedUsername = loginRequest.getEmail();
         String providedPassword = loginRequest.getPassword();
 
         if (username.equals(providedUsername) && password.equals(providedPassword)) {
-            String token = generateToken();
-            Map<String, String> response = new HashMap<>();
-            response.put("token", token);
-            return ResponseEntity.ok(response);
+            String token = jwtService.generateToken(username);
+            LogInResponse logInResponse = new LogInResponse();
+            logInResponse.setToken(token);
+            logInResponse.setExpiresIn(1800L);
+            return ResponseEntity.ok().body(logInResponse);
         } else {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
         }

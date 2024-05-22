@@ -1,16 +1,18 @@
 package com.h12.parking_lot.controller;
 
-import com.h12.parking_lot.model.floor.FloorDto;
 import com.h12.parking_lot.model.floor.Floor;
+import com.h12.parking_lot.model.floor.FloorDto;
 import com.h12.parking_lot.service.FloorService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController()
 @RequestMapping("/floor")
 @SuppressWarnings({"rawtypes"})
+@PreAuthorize("hasRole('USER:WRITE')")
 public class FloorController {
     private final FloorService floorService;
     @Autowired

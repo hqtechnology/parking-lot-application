@@ -58,9 +58,9 @@ public class UserService {
         return user.get();
     }
 
-    public List<User> findByFirstnameStartingWith(String firstname) {
-        LOGGER.debug("Retrieving the list of all users with firstname start with {}", firstname);
-        return userRepository.findByFirstnameStartingWithIgnoreCase(firstname.toUpperCase(), Sort.by(Sort.Direction.ASC, "firstname"));
+    public List<User> findByUsernameStartingWith(String username) {
+        LOGGER.debug("Retrieving the list of all users with username start with {}", username);
+        return userRepository.findByUsernameStartingWithIgnoreCase(username.toUpperCase(), Sort.by(Sort.Direction.ASC, "username"));
     }
 
     @Transactional

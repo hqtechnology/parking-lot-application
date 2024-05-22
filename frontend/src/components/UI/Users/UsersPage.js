@@ -21,7 +21,8 @@ async function loadEvents() {
   const token = localStorage.getItem('token');
 
   if (!token) {
-    throw new Error('Token not found');
+    return [];
+    // throw new Error('Token not found');
   }
 
   const response = await fetch(serverUrl, {

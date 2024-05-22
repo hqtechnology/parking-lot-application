@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class VehicleDto {
-    private Integer id;
     public VehicleType type;
+    private Integer id;
 }

@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController()
-@RequestMapping("/buildings")
+@RequestMapping("/building")
 @SuppressWarnings("rawtypes")
 public class BuildingController {
     @Autowired

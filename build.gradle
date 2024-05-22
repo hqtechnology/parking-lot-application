@@ -65,12 +65,21 @@ allprojects {
 }
 
 subprojects {
+    repositories {
+        mavenCentral()
+        mavenLocal()
+        maven {
+            url 'https://plugins.gradle.org/m2/'
+        }
+    }
     apply plugin: 'java'
 
     dependencies {
         implementation "org.springframework.boot:spring-boot-starter-actuator:${springBootVersion}"
 //        implementation "org.springframework.boot:spring-boot-starter-data-rest:${springBootVersion}"
         implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+        implementation 'org.springframework.boot:spring-boot-starter-oauth2-authorization-server'
+        implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
         implementation("org.springframework.boot:spring-boot-starter-web:${springBootVersion}") {
             ["spring-boot-starter-tomcat"].each {
                 exclude module: "$it"

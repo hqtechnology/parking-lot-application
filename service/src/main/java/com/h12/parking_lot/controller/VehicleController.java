@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController()
 @RequestMapping("/vehicle")
-@SuppressWarnings({ "rawtypes" })
+@SuppressWarnings({"rawtypes"})
 public class VehicleController {
     private final VehicleService vehicleService;
     private ModelMapper modelMapper;

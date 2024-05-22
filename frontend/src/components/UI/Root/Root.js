@@ -2,6 +2,7 @@ import { Outlet, useLoaderData, useSubmit } from 'react-router-dom';
 import { useEffect } from 'react';
 import MainNavigation from '../../Nav/MainNavigation';
 import { getTokenDuration } from '../../auth/auth';
+import ResponsiveAppBar from './ResponsiveAppBar';
 
 function RootLayout() {
   const token = useLoaderData();
@@ -18,7 +19,7 @@ function RootLayout() {
     }
 
     const tokenDuration = getTokenDuration();
-    console.log(tokenDuration);
+    // console.log(tokenDuration);
 
     setTimeout(() => {
       submit(null, { action: '/logout', method: 'post' });
@@ -27,7 +28,8 @@ function RootLayout() {
 
   return (
     <>
-      <MainNavigation />
+      <ResponsiveAppBar />
+      {/* <MainNavigation /> */}
       <main>
         <Outlet />
       </main>

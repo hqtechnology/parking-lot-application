@@ -10,7 +10,7 @@ public interface Response {
         return of(headers, data, errors, (Exception[]) null);
     }
 
-    static Response of(Object headers, Object data, Object errors, Exception ...ex) {
+    static Response of(Object headers, Object data, Object errors, Exception... ex) {
         return new GenericResponse(headers, data, errors, ex);
     }
 

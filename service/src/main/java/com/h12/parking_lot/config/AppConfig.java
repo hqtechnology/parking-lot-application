@@ -1,5 +1,8 @@
 package com.h12.parking_lot.config;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.h12.parking_lot.model.jwt.JwtKeys;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -42,5 +45,14 @@ public class AppConfig {
     @Bean
     public JwtKeys createKeys() {
         return new JwtKeys();
+    }
+
+    @Bean
+    public ObjectMapper objectMapper() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false);
+        objectMapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
+        objectMapper.configure(SerializationFeature.INDENT_OUTPUT, true);
+        return objectMapper;
     }
 }

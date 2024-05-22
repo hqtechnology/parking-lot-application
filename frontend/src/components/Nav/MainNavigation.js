@@ -21,12 +21,22 @@ const MainNavigation = () => {
           </li>
           <li>
             <NavLink
-              to="/users"
+              to="users"
               className={({ isActive }) =>
                 isActive ? classes.active : undefined
               }
             >
               Users
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="parking"
+              className={({ isActive }) =>
+                isActive ? classes.active : undefined
+              }
+            >
+              Parking
             </NavLink>
           </li>
           {!token && (
@@ -37,7 +47,7 @@ const MainNavigation = () => {
                   isActive ? classes.active : undefined
                 }
               >
-                Authentication
+                Login
               </NavLink>
             </li>
           )}

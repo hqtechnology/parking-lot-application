@@ -1,0 +1,56 @@
+
+
+.container {
+    text-align: left;
+    /* background-color: var(--color-primary-200); */
+
+}
+
+.form {
+    /* color: blue; */
+    /* background-color: blue; */
+    color: var(--color-primary-400);
+}
+
+.input {
+    /* color: success; */
+    /* background-color: blue; */
+    /* color: var(--color-primary-400); */
+    animation: forwards;
+    color: #ffd92e;
+
+}
+
+.inputLabel {
+    color: #ffd92e;
+}
+
+.button {
+    font: inherit;
+    border: 1px solid var(--color-primary-900);
+    background: var(--color-primary-900);
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+
+}
+
+.button:hover,
+.button:active {
+    background: var(--color-primary-100);
+    border-color: var(--color-primary-100);
+}
+
+.button:focus {
+    outline: none;
+}
+
+button:disabled,
+button:focus:disabled,
+button:hover:disabled,
+button:active:disabled {
+    background: #ccc;
+    border-color: #ccc;
+    color: #666666;
+    cursor: not-allowed;
+}

@@ -13,6 +13,7 @@ import org.springframework.web.filter.GenericFilterBean;
 
 import java.io.IOException;
 
+//@Order(1)
 public class BearerTokenFilter extends GenericFilterBean {
     public static final Logger log = LoggerFactory.getLogger(BearerTokenFilter.class);
 

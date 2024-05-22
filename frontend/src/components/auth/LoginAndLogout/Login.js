@@ -1,9 +1,11 @@
-import AuthForm from '../AuthForm';
+// import AuthForm from '../AuthForm';
 
 import { json, redirect } from 'react-router-dom';
+import GoogleLoginForm from '../GoogleLoginForm';
 
 function Login() {
-  return <AuthForm />;
+  // return <AuthForm />;
+  return <GoogleLoginForm />;
 }
 
 export default Login;
@@ -23,8 +25,8 @@ export async function action({ request }) {
   };
 
   const serverUrl = window.location.origin;
-  // console.log('Server URL: ' + serverUrl);
-  const response = await fetch(serverUrl + '/' + mode, {
+  console.log('Server URL: ' + serverUrl);
+  const response = await fetch(serverUrl + '/ui/' + mode, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -44,6 +46,7 @@ export async function action({ request }) {
   }
 
   const resData = await response.json();
+  console.log('resData ', resData);
   const token = resData.token;
 
   localStorage.setItem('token', token);
@@ -51,5 +54,5 @@ export async function action({ request }) {
   expiration.setHours(expiration.getHours() + 1);
   localStorage.setItem('expiration', expiration.toISOString());
 
-  return redirect('/');
+  return redirect('/ui');
 }

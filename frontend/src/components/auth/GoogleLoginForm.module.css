@@ -1,0 +1,21 @@
+.div {
+    container: inherit;
+    max-width: 40rem;
+    margin: 2rem auto;
+}
+
+.div h2 
+.div h3
+{
+    text-emphasis-color: var(--color-primary-300);
+    font: inherit;
+    color: var(--color-primary-300);
+}
+
+.div img {
+    display: flex;
+}
+
+.div p {
+    color: var(--color-primary-300);
+}
